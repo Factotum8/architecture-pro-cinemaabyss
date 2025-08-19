@@ -33,7 +33,8 @@ services:
 
   # Kafka
   kafka:
-    image: wurstmeister/kafka:2.13-2.7.0
+#    image: wurstmeister/kafka:2.13-2.7.0
+    image: confluentinc/cp-server:5.4.0
     container_name: cinemaabyss-kafka
     depends_on:
       - zookeeper
