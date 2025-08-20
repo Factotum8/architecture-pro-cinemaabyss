@@ -49,7 +49,7 @@ def publish_event(topic:str, event: dict):
 
 @app.get("/api/events/health")
 async def root():
-    return json.dumps({"status": True})
+    return {"status": True}
 
 
 @app.post("/api/events/movie", status_code=status.HTTP_201_CREATED)
