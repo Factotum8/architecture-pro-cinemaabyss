@@ -109,6 +109,7 @@ jobs:
 Как только сборка отработает и в github registry появятся ваши образы, можно переходить к блоку настройки Kubernetes
 Успешным результатом данного шага является "зеленая" сборка и "зеленые" тесты
 
+![Screenshot3.png](diagrams/Screenshot3.png)
 
 ### Proxy в Kubernetes
 
