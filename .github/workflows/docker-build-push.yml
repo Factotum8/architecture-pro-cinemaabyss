@@ -44,9 +44,11 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.MONOLITH_IMAGE_NAME }}
           tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,format=short
             type=ref,event=branch
-            type=ref,event=tag
-            type=sha
+            latest
 
       - name: Build and push Monolith Docker image
         uses: docker/build-push-action@v4
@@ -64,9 +66,11 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.MOVIES_SERVICE_IMAGE_NAME }}
           tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,format=short
             type=ref,event=branch
-            type=ref,event=tag
-            type=sha
+            latest
 
       - name: Build and push Movies Service Docker image
         uses: docker/build-push-action@v4
@@ -84,9 +88,11 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.PROXY_SERVICE_IMAGE_NAME }}
           tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,format=short
             type=ref,event=branch
-            type=ref,event=tag
-            type=sha
+            latest
 
       - name: Build and push Proxy Service Docker image
         uses: docker/build-push-action@v4
@@ -100,18 +106,20 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Event Service
         id: meta-event
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.EVENT_SERVICE_IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.EVENTS_SERVICE_IMAGE_NAME }}
           tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,format=short
             type=ref,event=branch
-            type=ref,event=tag
-            type=sha
+            latest
 
       - name: Build and push Event Service Docker image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
-          context: ./src/microservices/event
+          context: ./src/microservices/events
           push: true
           tags: ${{ steps.meta-event.outputs.tags }}
           labels: ${{ steps.meta-event.outputs.labels }}
