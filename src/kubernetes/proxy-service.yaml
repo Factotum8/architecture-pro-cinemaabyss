@@ -6,7 +6,7 @@ metadata:
   labels:
     app: proxy-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: proxy-service
@@ -46,7 +46,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: proxy
+  name: proxy-service
   namespace: cinemaabyss
 spec:
   selector:

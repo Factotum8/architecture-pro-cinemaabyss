@@ -54,6 +54,8 @@ async def root():
 
 @app.post("/api/events/movie", status_code=status.HTTP_201_CREATED)
 async def publish_movie_event(request: Request):
+    body = await request.body()  # bytes
+    logger.debug(f"BBB body.decode {body.decode()}")
     record_metadata = publish_event("movie-events", r := await request.json())
     return {"status": "success", "partition": record_metadata.partition, "offset": record_metadata.offset, "event": r}
 

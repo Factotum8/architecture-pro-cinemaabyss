@@ -260,13 +260,19 @@ cat .docker/config.json | base64
   ```bash
   minikube tunnel
   ```
-  11. Вызовите https://cinemaabyss.example.com/api/movies
+  11. Вызовите http://cinemaabyss.example.com/api/movies
   Вы должны увидеть вывод списка фильмов
-  Можно поэкспериментировать со значением   MOVIES_MIGRATION_PERCENT в src/kubernetes/configmap.yaml и убедится, что вызовы movies уходят полностью в новый сервис
+  Можно поэкспериментировать со значением MOVIES_MIGRATION_PERCENT в src/kubernetes/configmap.yaml и убедится, что вызовы movies уходят полностью в новый сервис
 
   12. Запустите тесты из папки tests/postman
   ```bash
    npm run test:kubernetes
+   or 
+   newman run CinemaAbyss.postman_collection.json \
+  -e kubernetes.environment.json \
+  -r htmlextra \
+  --reporter-htmlextra-export ./reports/k-report.html
+
   ```
   Часть тестов с health-чек упадет, но создание событий отработает.
   Откройте логи event-service и сделайте скриншот обработки событий
