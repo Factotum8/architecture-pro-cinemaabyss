@@ -18,10 +18,11 @@ spec:
       containers:
         - name: events-service
           image: ghcr.io/factotum8/architecture-pro-cinemaabyss/events-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8082
           env:
-            - name: KAFKA_BROKER
+            - name: KAFKA_BROKERS
               value: "kafka:9092"   # Kafka service name inside the cluster
           readinessProbe:             # ensures pod is ready before traffic
             httpGet:

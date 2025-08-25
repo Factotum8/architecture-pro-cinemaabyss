@@ -55,20 +55,22 @@ async def root():
 @app.post("/api/events/movie", status_code=status.HTTP_201_CREATED)
 async def publish_movie_event(request: Request):
     body = await request.body()  # bytes
-    logger.debug(f"BBB body.decode {body.decode()}")
+    logger.debug(f"/api/events/movie body.decode {body.decode()}")
     record_metadata = publish_event("movie-events", r := await request.json())
     return {"status": "success", "partition": record_metadata.partition, "offset": record_metadata.offset, "event": r}
 
 @app.post("/api/events/user", status_code=status.HTTP_201_CREATED)
 async def publish_user_event(request: Request):
-    # publish_event("user-events", await request.json())
+    body = await request.body()  # bytes
+    logger.debug(f"/api/events/movie body.decode {body.decode()}")
     record_metadata = publish_event("user-events", r := await request.json())
     return {"status": "success", "partition": record_metadata.partition, "offset": record_metadata.offset, "event": r}
 
 
 @app.post("/api/events/payment", status_code=status.HTTP_201_CREATED)
 async def publish_payment_event(request: Request):
-    # publish_event("payment-events", await request.json())
+    body = await request.body()  # bytes
+    logger.debug(f"/api/events/payment body.decode {body.decode()}")
     record_metadata = publish_event("payment-events", r := await request.json())
     return {"status": "success", "partition": record_metadata.partition, "offset": record_metadata.offset,
             "event": r}
