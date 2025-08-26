@@ -258,7 +258,7 @@ cat .docker/config.json | base64
 
   10. Вызовите
   ```bash
-  minikube tunnel
+  sudo minikube tunnel
   ```
   11. Вызовите http://cinemaabyss.example.com/api/movies
   Вы должны увидеть вывод списка фильмов
@@ -278,8 +278,9 @@ cat .docker/config.json | base64
   Откройте логи event-service и сделайте скриншот обработки событий
 
 #### Шаг 3
-Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
-
+Добавьте сюда скриншота вывода при вызове http://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
+![Screenshot5.png](diagrams/Screenshot5.png)
+![Screenshot6.png](diagrams/Screenshot6.png)
 
 ## Задание 4
 Для простоты дальнейшего обновления и развертывания вам как архитектуру необходимо так же реализовать helm-чарты для прокси-сервиса и проверить работу 
